@@ -3,13 +3,26 @@ plugins {
     id 'maven-publish'
 }
 
+final group = "com.github.jforlulz"
+final artifact = "stdf"
+final versionName = "0.1"
+
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-group = 'stdf'
-version = '1.0-SNAPSHOT'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = group
+                artifactId = artifact
+                version = versionName
+            }
+        }
+    }
+}
 
 repositories {
     mavenCentral()
